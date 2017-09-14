@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>营养书籍</title>
+    <link rel="Shortcut Icon" href="img/favicon.ico.bmp" />
+    <link rel="stylesheet" type="text/css" href="listCom.css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("body a").attr("target","_blank");
+            var oGuide = document.getElementById("guide");
+            var oList = oGuide.getElementsByTagName("li");
+            for(i = 0; i < oList.length; i++) {
+                oList[i].index = i;
+                oList[i].onmouseover = function () {
+                    oList[this.index].className = "demo";
+                };
+                oList[i].onmouseout = function () {
+                    oList[this.index].className = "";
+                }
+            }
+            var oNav=document.getElementById("navbar");
+            var oNavLi=oNav.getElementsByTagName("li");
+            var oDoc=document.getElementById("mydoc");
+            var oRZ=document.getElementById("ruzhu");
+            var oQR=document.getElementById("QRcode");
+            oNavLi[0].onmouseover=oDoc.onmouseover= function () {
+                oDoc.style.display="block";
+                oNavLi[0].style.backgroundColor="#fff";
+            };
+            oNavLi[0].onmouseout=oDoc.onmouseout=function () {
+                oDoc.style.display="none";
+                oNavLi[0].style.backgroundColor="#f2f2f2";
+            };
+            oNavLi[2].onmouseover=oRZ.onmouseover= function () {
+                oRZ.style.display="block";
+                oNavLi[2].style.backgroundColor="#fff";
+            };
+            oNavLi[2].onmouseout= oRZ.onmouseout=function () {
+                oRZ.style.display="none";
+                oNavLi[2].style.backgroundColor="#f2f2f2";
+            };
+            oNavLi[3].onmouseover=oQR.onmouseover= function () {
+                oQR.style.display="block";
+                oNavLi[3].style.backgroundColor="#fff";
+            };
+            oNavLi[3].onmouseout=oQR.onmouseout=function () {
+                oQR.style.display="none";
+                oNavLi[3].style.backgroundColor="#f2f2f2";
+            };
+            $(window).scroll(function () {
+                var top = $(document).scrollTop();
+                var items = $(".item");
+                var hideTop=items[5].offsetTop+450;
+                //var menu=document.getElementById("menu-tab");
+                var currentId = "";
+                var menu = $("#menu-tab");
+                if (top > 730&&top<hideTop) {
+                    menu[0].style.display = "block";
+                } else {
+                    menu[0].style.display = "none";
+                }
+                items.each(function () {
+                    var m = $(this);
+                    var itemTop = m.offset().top;
+                    if (top > itemTop - 280) {
+                        currentId = m.attr("id");
+                    } else {
+                        return false;
+                    }
+                });
+                var currentLink = menu.find(".current");
+                if (currentId && currentLink.attr("name") != currentId) {
+                    currentLink.removeClass("current");
+                    menu.find("[name=" + currentId + "]").addClass("current");
+                }
+            });
+            var menuList=$("#menu-tab li");
+            var timer=null;
+            menuList.click(function () {
+                clearInterval(timer);
+                var m=$(this).attr("data-id");
+                var items=$(".item");
+                var newTop=Math.ceil(items.eq(m).offset().top);
+                timer=setInterval(function () {
+                    var speed = (newTop - $(document).scrollTop() ) / 5;
+                    speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                    if( Math.ceil($(document).scrollTop()) == newTop ){
+                        clearInterval( timer );
+                    }else{
+                        var NowTop = Math.ceil($(document).scrollTop());
+                        $(document).scrollTop( NowTop + speed );
+                    }
+                },30)
+            });
+        });
+        function backTop(){
+            timer=setInterval(function () {
+                var pagescroll=document.body.scrollTop;
+                var scrollspeed=pagescroll/5;
+                document.body.scrollTop=pagescroll-scrollspeed;
+                if(pagescroll==0){
+                    clearInterval(timer)
+                }
+            },30)
+        }
+    </script>
+    <style>
+        .nav_search input{
+            border: 2px solid #5170ec;
+        }
+        .nav_search span{
+            border: 2px solid #5170ec;
+        }
+        .nav_search ul li a:hover{
+            color: #5170ec;
+        }
+        .nav span{
+            background-color: #5120ec;
+        }
+        .nav_head li a:hover{
+            color: #5120ec!important;
+            text-decoration: none;
+        }
+        .nav_list ul{
+            background-color: #5170ec;
+        }
+        .nav_list ul li:hover{
+            background-color: #5120ec!important;
+        }
+        .nav_list ul li:nth-child(1){
+            background: url("img/list1.png")no-repeat 10px center #5170ec;
+        }
+        .nav_list ul li:nth-child(2){
+            background: url("img/list2.png")no-repeat 10px center #5170ec;
+        }
+        .nav_list ul li:nth-child(3){
+            background: url("img/list3.png")no-repeat 10px center #5170ec;
+        }
+        .nav_list ul li:nth-child(4){
+            background: url("img/list4.png")no-repeat 10px center #5170ec;
+        }
+        .nav_list ul li:nth-child(5){
+            background: url("img/list5.png")no-repeat 10px center #5170ec;
+        }
+        .nav_list ul li:nth-child(6){
+            background: url("img/list1.png")no-repeat 10px center #5170ec;
+        }
+        #menu-tab li a:hover span ,#menu-tab a.current span{
+            background-color: #5170ec;
+        }
+        .hot-bargain{
+            background-color: #fdc800;
+        }
+        .item-head:hover .CrescentMoonR{
+           opacity: 1;
+        }
+        .item-head:hover span{
+            transform: rotate(360deg);
+        }
+        .item-head span{
+            transition:all 1s ease;
+        }
+        .CrescentMoonL{
+            width:150px;
+            height:150px;
+            position: absolute;
+            top: -60px;
+            left: -20px;
+            z-index: 20;
+            border-radius:50%;
+            box-shadow: 15px 15px 0 0 #fdc800;
+        }
+        .CrescentMoonR{
+        opacity: 0;
+            width:150px;
+            height:150px;
+            position: absolute;
+            left: 0;
+            top: -40px;
+            z-index: 20;
+            border-radius:50%;
+            box-shadow: -15px -15px 0 0#e60000;
+        }
+        .item-head{
+            background-color: #5170ec;
+        }
+        .item-head a{
+            color: #fff;
+            position: absolute;
+            right: 0;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="comWidth clearfix">
+        <div class="head_left fl">
+            <i></i>
+            <span>欢迎来到营养优选网上商城</span>
+            <a href="login.html" style="color:#4bd18a;" target="_blank">登录</a>
+            <a href="register.html" target="_blank">注册</a>
+        </div>
+        <div class="head_right fr">
+            <ul id="navbar">
+                <li><a href="login.html" target="_blank">我的营养医生</a></li>
+                <li><a href="login.html" target="_blank">我的订单</a></li>
+                <li><a href="#">商家入驻</a></li>
+                <li class="mobile"><a href="#">手机APP</a></li>
+                <li class="wuliu"><a href="#">物流信息</a></li>
+                <li class="collect"><a href="#">收藏</a></li>
+            </ul>
+            <div class="dropdown" id="mydoc">
+                <span></span>
+                <p>您好，请登录</p>
+                <ul>
+                    <li><a href="#">健康数据</a></li>
+                    <li><a href="#">症状记录</a></li>
+                    <li><a href="#">咨询历史</a></li>
+                    <li><a href="#">自我诊断</a></li>
+                    <li><a href="#">我的关注</a></li>
+                    <li><a href="#">我的购买</a></li>
+                </ul>
+            </div>
+            <div class="dropdown" id="ruzhu">
+                <a href="#">个人入驻</a>
+            </div>
+            <div id="QRcode" class="dropdown">
+                <img src="img/QRcode.jpg">
+            </div>
+        </div>
+    </div>
+</header>
+<div class="cont_nav comWidth clearfix">
+    <div class="nav_img fl">
+        <a href="main.html"><img src="img/logo-large.png"></a>
+        <span>营养书籍</span>
+    </div>
+    <div class="nav_search fl">
+        <input type="text" placeholder="请输入商品名">
+        <span></span>
+        <ul>
+            <li><a href="" class="sel">复方板蓝根冲剂</a></li>
+            <li><a href="">夏桑菊颗粒</a></li>
+            <li><a href="">红景天</a></li>
+            <li><a href="">连花清瘟胶囊</a></li>
+            <li><a href="" class="sel">阿莫西林</a></li>
+            <li><a href="">999感冒灵</a></li>
+            <a href="" style="float: right;margin-top: 2px">更多>></a>
+        </ul>
+
+    </div>
+    <div class="nav_QRcode fl">
+        <span class="cart">购物车&nbsp;></span>
+    </div>
+</div>
+<div class="nav comWidth">
+    <span>营养书籍分类</span>
+    <ul class="nav_head">
+        <li><a href="main.html">首页</a></li>
+        <li><a href="health_onl.html" target="_blank">健康在线<img src="img/hot.gif"></a></li>
+        <li><a href="#">入驻机构</a></li>
+        <li><a href="#">免费提问<img src="img/nice.gif"></a></li>
+        <li><a href="#">社区服务</a></li>
+        <li><a href="#">营养论坛</a></li>
+        <li><a href="http://www.yingyangyisheng.com/" target="_blank">营养医生</a></li>
+    </ul>
+</div>
+<div style="width: 100%;height: 2px;background-color: #5120ec"></div>
+<div class="container">
+    <div id="menu-tab">
+        <ul>
+            <li data-id="0"><a name="db" class="current" href="javascript:;"><i>1F</i><span>育儿</span></a></li>
+            <li data-id="1"><a name="ws" href="javascript:;"><i>2F</i><span>养生保健</span></a></li>
+            <li data-id="2"><a name="jy" href="javascript:;"><i>3F</i><span>两性</span></a></li>
+            <li data-id="3"><a name="gc" href="javascript:;"><i>4F</i><span>幼儿启蒙</span></a></li>
+            <li data-id="4"><a name="jk" href="javascript:;"><i>5F</i><span>儿童文学</span></a></li>
+            <li data-id="5"><a name="qt" href="javascript:;"><i>6F</i><span>科普知识</span></a></li>
+            <a onclick="backTop()" class="backtop"></a>
+        </ul>
+    </div>
+    <div id="banner-bg">
+        <div class="comWidth page clearfix">
+            <div class="nav_list fl">
+                <ul id="guide">
+                    <li><a href="list01-bl.html">育儿</a><span></span>
+                        <div class="floatcont">
+                            <dl>
+                                <dt><a href="list01-bl.html">白领 ></a></dt>
+                                <dd>
+                                    <a href="#">提升免疫力</a><a href="#">抗疲劳</a><a href="#">视力健康</a>
+                                    <a href="#">清咽润喉</a><a href="#">改善睡眠</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">男士 ></a></dt>
+                                <dd>
+                                    <a href="#">补肾强身</a><a href="#">前列腺养护</a><a href="#">解酒</a>
+                                    <a href="#">护肝</a><a href="#">养胃</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">女士 ></a></dt>
+                                <dd>
+                                    <a href="#">减肥瘦身</a><a href="#">美白祛斑</a><a href="#">调节内分泌</a>
+                                    <a href="#">滋阴补血</a><a href="#">延缓衰老</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">老年 ></a></dt>
+                                <dd>
+                                    <a href="#">调节三高</a><a href="#">健脑益智</a><a href="#">骨关节健康</a>
+                                    <a href="#">心脑血管养护</a><a href="#">补血补气</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">儿童、青少年 ></a></dt>
+                                <dd>
+                                    <a href="#">增强抵抗力</a><a href="#">大脑发育</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li><a href="list01-ns.html">养生保健</a><span></span>
+                        <div class="floatcont">
+                            <dl>
+                                <dt><a href="#">国产品牌 ></a></dt>
+                                <dd>
+                                    <a href="#">平板电视</a><a href="#">空调</a><a href="#">冰箱</a>
+                                    <a href="#">洗衣机</a><a href="#">家庭影院</a><a href="#">DVD</a>
+                                    <a href="#">迷你音响</a><a href="#">冷柜/冰吧</a><a href="#">酒柜</a>
+                                    <a href="#">家电配件</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">进口品牌 ></a></dt>
+                                <dd>
+                                    <a href="#">油烟机</a><a href="#">燃气灶</a><a href="#">烟灶套装</a>
+                                    <a href="#">消毒柜</a><a href="#">洗碗机</a><a href="#">电热水器</a>
+                                    <a href="#">燃气热水泵</a><a href="#">嵌入式厨电</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li><a href="list01-nx.html">两性</a><span></span>
+                        <div class="floatcont">
+                            <dl>
+                                <dt><a href="#">血糖 ></a></dt>
+                                <dd>
+                                    <a href="#">血糖仪</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">血压 ></a></dt>
+                                <dd>
+                                    <a href="#">血压计</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">重量 ></a></dt>
+                                <dd>
+                                    <a href="#">体重秤</a><a href="#">厨房秤</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">脂肪 ></a></dt>
+                                <dd>
+                                    <a href="#">脂肪测量</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">温/湿度计 ></a></dt>
+                                <dd>
+                                    <a href="#">温度计</a><a href="#">湿度计</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">计步器 ></a></dt>
+                                <dd>
+                                    <a href="#">计步器</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">其他 ></a></dt>
+                                <dd>
+                                    <a href="#">心电仪</a><a href="#">听诊器</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li><a href="list01-old.html">幼儿启蒙</a><span></span>
+                        <div class="floatcont">
+                            <dl>
+                                <dt><a href="#">营养 ></a></dt>
+                                <dd>
+                                    <a href="#">平板电视</a><a href="#">空调</a><a href="#">冰箱</a>
+                                    <a href="#">洗衣机</a><a href="#">家庭影院</a><a href="#">DVD</a>
+                                    <a href="#">迷你音响</a><a href="#">冷柜/冰吧</a><a href="#">酒柜</a>
+                                    <a href="#">家电配件</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">洗护 ></a></dt>
+                                <dd>
+                                    <a href="#">油烟机</a><a href="#">燃气灶</a><a href="#">烟灶套装</a>
+                                    <a href="#">消毒柜</a><a href="#">洗碗机</a><a href="#">电热水器</a>
+                                    <a href="#">燃气热水泵</a><a href="#">嵌入式厨电</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">塑身 ></a></dt>
+                                <dd>
+                                    <a href="#">电饭煲</a><a href="#">微波炉</a><a href="#">电烤箱</a>
+                                    <a href="#">电磁炉</a><a href="#">电压力锅</a><a href="#">豆浆机</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">待产 ></a></dt>
+                                <dd>
+                                    <a href="#">电风扇</a><a href="#">冷风扇</a><a href="#">吸尘器</a>
+                                    <a href="#">净化器</a><a href="#">扫地机器人</a>
+                                    <a href="#">收/录音机</a><a href="#">其他生活电器</a>
+                                    <a href="#">生活电器配件</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">洗漱护肤 ></a></dt>
+                                <dd>
+                                    <a href="#">剃须刀</a><a href="#">口腔护理</a><a href="#">电吹风</a>
+                                    <a href="#">美容器</a><a href="#">卷/直发器</a>
+                                    <a href="#">理发器</a><a href="#">剃/脱毛器</a><a href="#">足浴盆</a>
+
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">益智玩具 ></a></dt>
+                                <dd>
+                                    <a href="#">电饭煲</a><a href="#">微波炉</a><a href="#">电烤箱</a>
+                                    <a href="#">电磁炉</a><a href="#">电压力锅</a><a href="#">豆浆机</a>
+
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">清洁消毒 ></a></dt>
+                                <dd>
+                                    <a href="#">电饭煲</a><a href="#">微波炉</a><a href="#">电烤箱</a>
+                                    <a href="#">电磁炉</a><a href="#">电压力锅</a><a href="#">豆浆机</a>
+
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">孕妇奶粉 ></a></dt>
+                                <dd>
+                                    <a href="#">电饭煲</a><a href="#">微波炉</a><a href="#">电烤箱</a>
+
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">婴儿奶粉 ></a></dt>
+                                <dd>
+                                    <a href="#">电饭煲</a><a href="#">微波炉</a><a href="#">电烤箱</a>
+
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">幼儿奶粉 ></a></dt>
+                                <dd>
+                                    <a href="#">电饭煲</a><a href="#">微波炉</a><a href="#">电烤箱</a>
+                                    <a href="#">电磁炉</a><a href="#">电压力锅</a><a href="#">豆浆机</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">产后保健 ></a></dt>
+                                <dd>
+                                    <a href="#">1</a><a href="#">2</a><a href="#">3</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">产后瘦身 ></a></dt>
+                                <dd>
+                                    <a href="#">1</a><a href="#">2</a><a href="#">3</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">产后美胸 ></a></dt>
+                                <dd>
+                                    <a href="#">1</a><a href="#">2</a><a href="#">3</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li><a href="list01-child.html">儿童文学</a><span></span>
+                        <div class="floatcont">
+                            <dl>
+                                <dt><a href="#">身体养护 ></a></dt>
+                                <dd>
+                                    <a href="#">前列腺养护</a><a href="#">解酒</a><a href="#">护肝</a>
+                                    <a href="#">养胃</a><a href="#">清肺润喉</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">强身健体 ></a></dt>
+                                <dd>
+                                    <a href="#">健身增肌</a><a href="#">补充能量</a><a href="#">缓解压力</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li><a href="list01-teenager.html">科普知识</a><span></span>
+                        <div class="floatcont">
+                            <dl>
+                                <dt><a href="#">身体养护 ></a></dt>
+                                <dd>
+                                    <a href="#">前列腺养护</a><a href="#">解酒</a><a href="#">护肝</a>
+                                    <a href="#">养胃</a><a href="#">清肺润喉</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">强身健体 ></a></dt>
+                                <dd>
+                                    <a href="#">健身增肌</a><a href="#">补充能量</a><a href="#">缓解压力</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="pics">
+                <div class="big_pics">
+                    <ul id="big_pics">
+                        <li><img src="img/lb2.png" alt=""/></li>
+                        <li><img src="img/lb1.png" alt=""/></li>
+                    </ul>
+                </div>
+                <div class="pics_index"></div>
+            </div>
+            <div class="news fr">
+                <dl>
+                    <dd><a href=""><img src="img/baojian18.jpg"></a></dd>
+                    <dd><a href=""><img src="img/baojian18.jpg"></a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="hot-bargain comWidth">
+        <div class="hot-nav">
+            <ul>
+                <li style="background-color: #ff002a;left: -40px;top: 40px">热门商品</li>
+                <li style="background-color: #ff4200;left: -35px;top: 120px">限时秒杀</li>
+            </ul>
+        </div>
+        <div class="hot01">
+            <a href=""><img src="img/baojian11.jpg"></a>
+        </div>
+        <div class="hot02">
+            <a href=""><img src="img/5796d590N2f5a0b2f.jpeg"></a>
+        </div>
+        <div class="hot03">
+            <a href=""><img src="img/baojian9.jpg"></a>
+        </div>
+        <div class="hot04">
+            <a href=""><img src="img/baojian15.jpg"></a>
+        </div>
+        <div class="hot05">
+            <a href=""><img src="img/57a81b47N9fe2e2fe.jpeg"></a>
+        </div>
+    </div>
+    <div class="item comWidth clearfix" id="db">
+        <div class="item-head">
+            <span class="CrescentMoonL"></span>
+            <span class="CrescentMoonR"></span>
+            <i>1F 育儿</i>
+            <a href="">更多 &gt;</a>
+        </div>
+        <div class="item-cont">
+            <div class="item01"><a href=""><img src="img/57a81b47N9fe2e2fe.jpeg"></a></div>
+            <div class="item02"><a href=""><img src="img/baojian5.jpg"></a></div>
+            <div class="item03"><a href=""><img src="img/baojian7.jpg"></a></div>
+            <div class="item04"><a href=""><img src="img/baojian2.jpg"></a></div>
+            <div class="item05"><a href=""><img src="img/baojian3.jpg"></a></div>
+            <div class="item06"><a href=""><img src="img/baojian12.jpg"></a></div>
+            <div class="item07"><a href=""><img src="img/baojian9.jpg"></a></div>
+            <div class="item08"><a href=""><img src="img/baojian13.jpg"></a></div>
+            <div class="item09"><a href=""><img src="img/baojian18.jpg"></a></div>
+        </div>
+    </div>
+    <div class="item comWidth clearfix" id="ws">
+        <div class="item-head">
+            <span class="CrescentMoonL"></span>
+            <span class="CrescentMoonR"></span>
+            <i>2F 养生保健</i>
+            <a href="">更多 &gt;</a>
+        </div>
+        <div class="item-cont">
+            <div class="item01"><a href=""><img src="img/57a81b47N9fe2e2fe.jpeg"></a></div>
+            <div class="item02"><a href=""><img src="img/baojian5.jpg"></a></div>
+            <div class="item03"><a href=""><img src="img/baojian7.jpg"></a></div>
+            <div class="item04"><a href=""><img src="img/baojian2.jpg"></a></div>
+            <div class="item05"><a href=""><img src="img/baojian3.jpg"></a></div>
+            <div class="item06"><a href=""><img src="img/baojian12.jpg"></a></div>
+            <div class="item07"><a href=""><img src="img/baojian9.jpg"></a></div>
+            <div class="item08"><a href=""><img src="img/baojian13.jpg"></a></div>
+            <div class="item09"><a href=""><img src="img/baojian18.jpg"></a></div>
+        </div>
+    </div>
+    <div class="item comWidth clearfix" id="jy">
+        <div class="item-head">
+            <span class="CrescentMoonL"></span>
+            <span class="CrescentMoonR"></span>
+            <i>3F 两性</i>
+            <a href="">更多 &gt;</a>
+        </div>
+        <div class="item-cont">
+            <div class="item01"><a href=""><img src="img/57a81b47N9fe2e2fe.jpeg"></a></div>
+            <div class="item02"><a href=""><img src="img/baojian5.jpg"></a></div>
+            <div class="item03"><a href=""><img src="img/baojian7.jpg"></a></div>
+            <div class="item04"><a href=""><img src="img/baojian2.jpg"></a></div>
+            <div class="item05"><a href=""><img src="img/baojian3.jpg"></a></div>
+            <div class="item06"><a href=""><img src="img/baojian12.jpg"></a></div>
+            <div class="item07"><a href=""><img src="img/baojian9.jpg"></a></div>
+            <div class="item08"><a href=""><img src="img/baojian13.jpg"></a></div>
+            <div class="item09"><a href=""><img src="img/baojian18.jpg"></a></div>
+        </div>
+    </div>
+    <div class="item comWidth clearfix" id="gc">
+        <div class="item-head">
+            <span class="CrescentMoonL"></span>
+            <span class="CrescentMoonR"></span>
+            <i>4F 幼儿启蒙</i>
+            <a href="">更多 &gt;</a>
+        </div>
+        <div class="item-cont">
+            <div class="item01"><a href=""><img src="img/57a81b47N9fe2e2fe.jpeg"></a></div>
+            <div class="item02"><a href=""><img src="img/baojian5.jpg"></a></div>
+            <div class="item03"><a href=""><img src="img/baojian7.jpg"></a></div>
+            <div class="item04"><a href=""><img src="img/baojian2.jpg"></a></div>
+            <div class="item05"><a href=""><img src="img/baojian3.jpg"></a></div>
+            <div class="item06"><a href=""><img src="img/baojian12.jpg"></a></div>
+            <div class="item07"><a href=""><img src="img/baojian9.jpg"></a></div>
+            <div class="item08"><a href=""><img src="img/baojian13.jpg"></a></div>
+            <div class="item09"><a href=""><img src="img/baojian18.jpg"></a></div>
+        </div>
+    </div>
+    <div class="item comWidth clearfix" id="jk">
+        <div class="item-head">
+            <span class="CrescentMoonL"></span>
+            <span class="CrescentMoonR"></span>
+            <i>5F 儿童文学</i>
+            <a href="">更多 &gt;</a>
+        </div>
+        <div class="item-cont">
+            <div class="item01"><a href=""><img src="img/57a81b47N9fe2e2fe.jpeg"></a></div>
+            <div class="item02"><a href=""><img src="img/baojian5.jpg"></a></div>
+            <div class="item03"><a href=""><img src="img/baojian7.jpg"></a></div>
+            <div class="item04"><a href=""><img src="img/baojian2.jpg"></a></div>
+            <div class="item05"><a href=""><img src="img/baojian3.jpg"></a></div>
+            <div class="item06"><a href=""><img src="img/baojian12.jpg"></a></div>
+            <div class="item07"><a href=""><img src="img/baojian9.jpg"></a></div>
+            <div class="item08"><a href=""><img src="img/baojian13.jpg"></a></div>
+            <div class="item09"><a href=""><img src="img/baojian18.jpg"></a></div>
+        </div>
+    </div>
+    <div class="item comWidth clearfix" id="qt">
+        <div class="item-head">
+            <span class="CrescentMoonL"></span>
+            <span class="CrescentMoonR"></span>
+            <i>6F 科普知识</i>
+            <a href="">更多 &gt;</a>
+        </div>
+        <div class="item-cont">
+            <div class="item01"><a href=""><img src="img/57a81b47N9fe2e2fe.jpeg"></a></div>
+            <div class="item02"><a href=""><img src="img/baojian5.jpg"></a></div>
+            <div class="item03"><a href=""><img src="img/baojian7.jpg"></a></div>
+            <div class="item04"><a href=""><img src="img/baojian2.jpg"></a></div>
+            <div class="item05"><a href=""><img src="img/baojian3.jpg"></a></div>
+            <div class="item06"><a href=""><img src="img/baojian12.jpg"></a></div>
+            <div class="item07"><a href=""><img src="img/baojian9.jpg"></a></div>
+            <div class="item08"><a href=""><img src="img/baojian13.jpg"></a></div>
+            <div class="item09"><a href=""><img src="img/baojian18.jpg"></a></div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="foot_wrap">
+        <div class="comWidth clearfix foot_cont">
+            <ul>
+                <li>购物指南
+                    <dl>
+                        <dd><a href="">购物流程</a></dd>
+                        <dd><a href="">常见问题</a></dd>
+                        <dd><a href="">联系客服</a></dd>
+                    </dl>
+                </li>
+                <li>物流配送
+                    <dl>
+                        <dd><a href="">上门自提</a></dd>
+                        <dd><a href="">免运费条件</a></dd>
+                        <dd><a href="">配送范围</a></dd>
+                        <dd><a href="">收费标准</a></dd>
+                    </dl>
+                </li>
+                <li>支付方式
+                    <dl>
+                        <dd><a href="">货到付款</a></dd>
+                        <dd><a href="">网上支付</a></dd>
+                        <dd><a href="">分期付款</a></dd>
+                        <dd><a href="">快捷支付</a></dd>
+                        <dd><a href="">公司转账</a></dd>
+                    </dl>
+                </li>
+                <li>售后服务
+                    <dl>
+                        <dd><a href="">退换货政策</a></dd>
+                        <dd><a href="">退换货流程</a></dd>
+                        <dd><a href="">退款说明</a></dd>
+                        <dd><a href="">品牌售后</a></dd>
+                    </dl>
+                </li>
+                <li>商务合作
+                    <dl>
+                        <dd><a href="">供应商合作</a></dd>
+                        <dd><a href="">商家入驻</a></dd>
+                        <dd><a href="">广告服务</a></dd>
+                    </dl>
+                </li>
+                <li>营养医生客户端
+                    <dl>
+                        <a href=""><img src="img/QRcode.jpg"></a>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <div class="comWidth clearfix" style="background-color: #f4f4f4;">
+                <ul>
+                    <li><a href="">关于我们</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">诚聘英才</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">合作伙伴</a></li>
+                    <li><a href="">友情键接</a></li>
+                    <li><a href="">法律声明</a></li>
+                    <li><a href="">English Site</a></li>
+                </ul>
+                <p>Copyright © 2011-2016 广州鼎卓信息技术有限公司 All Rights Reserved  粤ICP备16052074号</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

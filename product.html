@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21金维他</title>
+    <link rel="stylesheet" type="text/css" href="productcss.css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function getByClass(oPar,sClas){
+            var aEle=document.getElementsByTagName("*");
+            var aTmp=[];
+            for(i=0;i<aEle.length;i++){
+                if(aEle[i].className==sClas){
+                    aTmp.push(aEle[i])
+                }
+            }
+            return aTmp
+        }
+        $(function () {
+            $("a").attr("target","_blank");
+            var oDiv=document.getElementById("lt-img");
+            var oMark=getByClass(oDiv,"mark")[0];
+            var oFloat=getByClass(oDiv,"Float")[0];
+            var oBig=getByClass(oDiv,"big_Pic")[0];
+            var oSmall=getByClass(oDiv,"small_Pic")[0];
+            var oImg=$(".big_Pic img");
+            var smallLi=$(".small_Pic li");
+             var indexLi=$(".pic-index dd");
+            var bigUl=$(".big_Pic ul")[0];
+            var bigLi=$(".big_Pic li");
+            indexLi.hover(function () {
+                $(this).addClass("index-select").siblings().removeClass();
+                var t=$(this).attr("data-img");
+                smallLi.eq(t).show().siblings().hide();
+                bigLi.eq(t).show().siblings().hide();
+            });
+            oMark.onmouseover=function(){
+                oFloat.style.display="block";
+                oBig.style.display="block";
+            };
+            oMark.onmouseout=function(){
+                oFloat.style.display="none";
+                oBig.style.display="none";
+            };
+            oMark.onmousemove= function (ev) {
+                var oEvent=ev||event;
+                var l=oEvent.clientX-oDiv.offsetLeft-oSmall.offsetLeft-oFloat.offsetWidth/2;
+                var t=oEvent.clientY-oDiv.offsetTop-oSmall.offsetTop-oFloat.offsetHeight/2;
+//                console.log(oSmall.offsetTop);
+//                console.log(oDiv.offsetTop);
+//                console.log(oEvent.clientY);
+
+                if(l<0){
+                    l=0
+                }else if(l>oMark.offsetWidth-oFloat.offsetWidth){
+                    l=oMark.offsetWidth-oFloat.offsetWidth;
+                }
+                if(t<0){
+                    t=0;
+                }else if(t>oMark.offsetHeight-oFloat.offsetHeight){
+                    t=oMark.offsetHeight-oFloat.offsetHeight;
+                }
+                oFloat.style.left=l+"px";
+                oFloat.style.top=t+"px";
+                var percentX=l/(oMark.offsetWidth-oFloat.offsetWidth);
+                var percentY=t/(oMark.offsetHeight-oFloat.offsetHeight);
+                bigUl.style.left=-percentX*(bigUl.offsetWidth-oBig.offsetHeight)+"px";
+                bigUl.style.top=-percentY*(bigUl.offsetHeight-oBig.offsetHeight)+"px";
+            };
+            $(".location a").each(function () {
+                var m=$(this);
+                m.click(function () {
+                    var t=$(this).text();
+                    $("#user-address strong").text(t);
+                    $(".location a").removeClass();
+                    $(this).addClass("location-on");
+                    return false;
+                })
+            });
+            $(".select-scale a").click(function () {
+               $(this).addClass("select").siblings().removeClass("select");
+                return false;
+            });
+            $(".count_add").click(function () {
+               var t=$(".count-cg input").val();
+                t++;
+                $(".count-cg input").val(t);
+                return false;
+            });
+            $(".count_reduce").click(function () {
+                var t=$(".count-cg input").val();
+                if(t<=1){
+                   $(this).attr("disabled","disabled");
+                }else{
+                    t--;
+                    $(".count-cg input").val(t);
+                }
+                return false;
+            });
+            var rollobj=$(".doc-cont ul");
+            var rollWidth=rollobj.find("li").width();
+            var rollLen=rollobj.find("li").length;
+            var rollIndex=0;
+           rollobj.width(rollWidth*rollLen);
+            $(".doc-next").click(function () {
+                rollIndex++;
+                if(rollIndex>=(rollLen/6)-1){
+                    rollIndex=(rollLen/6)-1;
+                }
+                showDocList(rollIndex);
+                return false;
+            });
+            $(".doc-prev").click(function () {
+                rollIndex--;
+                if(rollIndex<=0){
+                    rollIndex=0;
+                }
+                showDocList(rollIndex);
+                return false;
+            });
+            $(".wrap-R-head ul li").click(function () {
+                $(this).addClass("head-sel").siblings().removeClass("head-sel");
+                var t=$(this).attr("data-page");
+                $(".wrap-R-wrap").hide().eq(t).show();
+                return false;
+            })
+        });
+        function showDocList(index){
+            var rollobj=$(".doc-cont ul");
+            var rollWidth=rollobj.find("li").width();
+            rollWidth=rollWidth*6;
+            var rollLen=rollobj.find("li").length;
+            if(index<=0){
+                $(".doc-prev").addClass("doc-btn-def");
+            }else if(0<index<(rollLen/6)-1){
+                $(".doc-prev").removeClass("doc-btn-def");
+                $(".doc-next").removeClass("doc-btn-def");
+            }
+            if(index>=(rollLen/6)-1){
+                $(".doc-next").addClass("doc-btn-def");
+            }
+            rollobj.stop(true,false).animate({left:-rollWidth*index},1000)
+        }
+    </script>
+</head>
+<body>
+<header>
+    <div class="comWidth clearfix">
+        <div class="head_left fl">
+            <span id="head-tit">欢迎来到营养优选网上商城</span>
+            <div class="address addhover">
+                <span>送货至</span>
+                <span id="user-address">
+                    <strong>广东</strong>
+                </span>
+                <div class="spacer"></div>
+            <ul class="location clearfix">
+                <li><a href="#">北京</a></li><li><a href="#">上海</a></li><li><a href="#">天津</a></li>
+                <li><a href="#">重庆</a></li><li><a href="#">河北</a></li><li><a href="#">山西</a></li>
+                <li><a href="#">河南</a></li> <li><a href="#">辽宁</a></li><li><a href="#">吉林</a></li>
+                <li><a href="#">黑龙江</a></li><li><a href="#">内蒙古</a></li><li><a href="#">江苏</a></li>
+                <li><a href="#">山东</a></li><li><a href="#">安徽</a></li><li><a href="#">浙江</a></li>
+                <li><a href="#">福建</a></li><li><a href="#">湖北</a></li><li><a href="#">湖南</a></li>
+                <li><a href="#" class="location-on">广东</a></li><li><a href="#">广西</a></li><li><a href="#">江西</a></li>
+                <li><a href="#">四川</a></li><li><a href="#">海南</a></li><li><a href="#">贵州</a></li>
+                <li><a href="#">云南</a></li><li><a href="#">西藏</a></li><li><a href="#">陇西</a></li>
+                <li><a href="#">甘肃</a></li><li><a href="#">青海</a></li><li><a href="#">宁夏</a></li>
+                <li><a href="#">新疆</a></li><li><a href="#">台湾</a></li><li><a href="#">香港</a></li>
+                <li><a href="#">澳门</a></li><li><a href="#">钓鱼岛</a></li><li><a href="#">海外</a></li>
+            </ul>
+            </div>
+        </div>
+        <div class="head_right fr">
+            <ul id="navbar">
+                <a href="login.html" style="color:#4bd18a;">登录</a>
+                <a href="register.html">注册</a>
+                <li><a href="login.html">我的营养优选</a></li>
+                <li><a href="login.html">我的订单</a></li>
+                <li><a href="#">商家入驻</a></li>
+                <li class="mobile"><a href="#">手机APP</a></li>
+                <li class="wuliu"><a href="#">物流信息</a></li>
+                <li class="collect"><a href="#">收藏</a></li>
+            </ul>
+            <div class="dropdown" id="mydoc">
+                <span></span>
+                <p>您好，请登录</p>
+                <ul>
+                    <li><a href="#">健康数据</a></li>
+                    <li><a href="#">症状记录</a></li>
+                    <li><a href="#">咨询历史</a></li>
+                    <li><a href="#">自我诊断</a></li>
+                    <li><a href="#">我的关注</a></li>
+                    <li><a href="#">我的购买</a></li>
+                </ul>
+            </div>
+            <div class="dropdown" id="ruzhu">
+                <a href="#">个人入驻</a>
+            </div>
+            <div id="QRcode" class="dropdown">
+                <img src="img/QRcode.jpg">
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="cont_nav comWidth clearfix">
+        <div class="nav_img fl">
+            <a href="main.html"><img src="img/logo-large.png"></a>
+        </div>
+        <div class="nav_search fl">
+            <input type="text" placeholder="请输入商品名">
+            <span></span>
+            <ul>
+                <li><a href="" class="sel">复方板蓝根冲剂</a></li>
+                <li><a href="">夏桑菊颗粒</a></li>
+                <li><a href="">红景天</a></li>
+                <li><a href="">连花清瘟胶囊</a></li>
+                <li><a href="" class="sel">阿莫西林</a></li>
+                <li><a href="">999感冒灵</a></li>
+                <a href="" style="float: right;margin-top: 2px">更多>></a>
+            </ul>
+
+        </div>
+        <div class="nav_QRcode fl">
+            <span class="cart">购物车&nbsp;></span>
+        </div>
+    </div>
+    <div style="background-color: #4bd12a">
+        <div class="nav comWidth">
+            <i>全部商品分类
+                <div class="nav_list">
+                    <ul>
+                        <li><a href="list01.html">综合保健</a><span></span>
+                        </li>
+                        <li><a href="list02.html">蛋白质&nbsp;</a><a href="list02.html">维生素</a><span></span>
+                        </li>
+                        <li><a href="list03.html">孕妈必备&nbsp;</a><a href="list03.html">宝宝用品&nbsp;</a><a href="list03.html">奶粉</a><span></span>
+                        </li>
+                        <li><a href="list04.html">儿童营养&nbsp;</a><a href="list04.html">益智</a><span></span>
+                        </li>
+                        <li><a href="list05.html">女性营养&nbsp;</a><a href="list05.html">养血&nbsp;</a><a href="list05.html">美白</a><span></span>
+                        </li>
+                        <li><a href="list06.html">营养塑身&nbsp;</a><a href="list06.html">纤体&nbsp;</a><a href="list06.html">增重</a><span></span>
+                        </li>
+                        <li><a href="list07.html">男性保健</a><span></span>
+                        </li>
+                        <li><a href="list08.html">慢病营养&nbsp;</a><a href="list08.html">调节三高&nbsp;</a><a href="list08.html">预防肿瘤</a><span></span>
+                        </li>
+                        <li><a href="list09.html">医用食品</a><span></span>
+                        </li>
+                        <li><a href="list10.html">保健器械</a><span></span>
+                        </li>
+                        <li><a href="list11.html">绿色食品&nbsp;</a><a href="list11.html">农产品&nbsp;</a><a href="list11.html">休闲食品</a><span></span>
+                        </li>
+                        <li><a href="list12.html">营养书籍&nbsp;</a><a href="list12.html">少儿书籍</a><span></span>
+                        </li>
+                        <li><a href="list13.html">海外直邮</a><span></span>
+                        </li>
+                    </ul>
+                </div></i>
+            <ul class="nav_head">
+                <li><a href="main.html">首页</a></li>
+                <li><a href="health_onl.html">健康在线<img src="img/hot.gif"></a></li>
+                <li><a href="#">入驻机构</a></li>
+                <li><a href="#">免费提问<img src="img/nice.gif"></a></li>
+                <li><a href="#">社区服务</a></li>
+                <li><a href="#">营养论坛</a></li>
+                <li><a href="http://www.yingyangyisheng.com/" target="_blank">营养医生</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content comWidth">
+        <div class="tit">
+            <a href="main.html">首页</a>&gt; <a href="list01.html">综合保健</a>&gt;
+            <a href="list01-bl.html">白领</a>&gt; <a href="product.html">胡萝卜素软胶囊</a>
+        </div>
+        <div class="clearfix">
+            <div class="img-detail fl">
+            <div class="detail-img" id="lt-img">
+                <div class="small_Pic">
+                    <span class="mark"></span>
+                    <span class="Float"></span>
+                    <ul>
+                        <li data-img="0" style="display: block"><img src="img/small01.jpg"></li>
+                        <li data-img="1"><img src="img/small02.jpg"></li>
+                        <li data-img="2"><img src="img/small03.jpg"></li>
+                    </ul>
+                </div>
+                <div class="pic-index">
+                    <dl>
+                        <dd class="index-select" data-img="0"><img src="img/pic-index01.jpg"></dd>
+                        <dd data-img="1"><img src="img/pic-index02.jpg"></dd>
+                        <dd data-img="2"><img src="img/pic-index03.jpg"></dd>
+                    </dl>
+                </div>
+                <div class="big_Pic">
+                    <ul>
+                        <li data-img="0"><img src="img/big01.jpg"></li>
+                        <li data-img="1"><img src="img/big02.jpg"></li>
+                        <li data-img="2"><img src="img/big03.jpg"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div class="list_detail fl">
+                <h4>β-胡萝卜素软胶囊</h4>
+                <strong>【简介介绍促销简介介绍促销简介介绍促销简介介绍促销简介介绍促销简介介绍促销简介介绍促销简介介绍促销】</strong>
+                <p>优选价格： <span>¥98.00</span></p>
+                <div class="buy-add">
+                    <div>配&nbsp;&nbsp;送&nbsp;&nbsp;至：</div>
+                    <div class="select-add">广东省佛山市万科</div>
+                </div>
+                <div class="item-scale clearfix">
+                    <div class="item-price">选择规格：</div>
+                    <div class="select-scale">
+                        <a href="" class="select">β-胡萝卜素软胶囊30粒<b></b></a>
+                        <a href="">β-胡萝卜素软胶囊60粒<b></b></a>
+                        <a href="">β-胡萝卜素软胶囊90粒<b></b></a>
+                    </div>
+                </div>
+                <div class="count">
+                    <div>购买数量 :</div>
+                    <div class="count-cg">
+                        <input type="text" value="1">
+                        <a href="javascript;" class="count_add">+</a>
+                        <a href="javascript;" class="count_reduce">-</a>
+                    </div>
+                </div>
+                <div class="btn">
+                    <a href="" class="add_cart">加入购物车</a>
+                    <a href="" class="add_buy">立即购买</a>
+                    <a href="" class="add_consult">咨询医生</a>
+                </div>
+                <p>本商品由营养优选销售和发货<br>18:00前下单预计当天出库，部分城市支持次日达。<a href="">运费详情 >></a></p>
+            </div>
+            <div class="list_ext fr">
+                <div class="shop-img">
+                    <a href="">LOGO</a>
+                </div>
+                <div class="shop-name">
+                    <a href="">维生素官方旗舰店</a>
+                </div>
+                <div class="shop-comment clearfix">
+                    <span class="fl">9.5</span>
+                    <dl class="fl">
+                        <dd><a href="">商品评价</a><b>9.3</b></dd>
+                        <dd><a href="">服务态度</a><b>9.2</b></dd>
+                        <dd><a href="">物流速度</a><b>8.8</b></dd>
+                    </dl>
+                </div>
+                <div class="rbtn">
+                    <a href="" class="draw">联系商家</a>
+                    <a href="" class="draw">收藏商品</a>
+                    <a href="" class="draw">进店逛逛</a>
+                </div>
+            </div>
+        </div>
+        <div class="doc">
+            <p>医生在线</p><i></i>
+            <div class="doc-btn">
+                <a href="" class="doc-prev doc-btn-def">&lt; 上一页</a>
+            <a href="" class="doc-next">下一页 &gt;</a>
+            </div>
+            <div class="doc-cont">
+                <ul>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                    <li><a href=""><img src="img/doc1.jpg" alt=""/><h4>某某某</h4><p>广州人民医院</p><span>这个医生不得了啊不得了反正就是不得了</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrap clearfix">
+            <div class="wrap-L fl">
+                <div class="wrap-L-1">
+                    <p>相关分类</p>
+                    <div class="clearfix">
+                        <ul>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="wrap-L-1">
+                    <p>同类其他品牌</p>
+                    <div class="clearfix">
+                        <ul>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">1</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="wrap-L-2">
+                    <p>看了又看</p>
+                    <ul>
+                        <li>
+                            <div class="wrap-img">
+                                <a href=""><img src="img/baojian9.jpg" alt=""/></a>
+                            </div>
+                            <div class="wrap-name"><a href="">这是个保健品是个保健品是个保健品是个保健品</a></div>
+                            <div class="wrap-price">¥168.00</div>
+                        </li>
+                        <li>
+                            <div class="wrap-img">
+                                <a href=""><img src="img/baojian9.jpg" alt=""/></a>
+                            </div>
+                            <div class="wrap-name"><a href="">这是个保健品是个保健品是个保健品是个保健品</a></div>
+                            <div class="wrap-price">¥168.00</div>
+                        </li>
+                        <li>
+                            <div class="wrap-img">
+                                <a href=""><img src="img/baojian9.jpg" alt=""/></a>
+                            </div>
+                            <div class="wrap-name"><a href="">这是个保健品是个保健品是个保健品是个保健品</a></div>
+                            <div class="wrap-price">¥168.00</div>
+                        </li>
+                        <li>
+                            <div class="wrap-img">
+                                <a href=""><img src="img/baojian9.jpg" alt=""/></a>
+                            </div>
+                            <div class="wrap-name"><a href="">这是个保健品是个保健品是个保健品是个保健品</a></div>
+                            <div class="wrap-price">¥168.00</div>
+                        </li>
+                        <li>
+                            <div class="wrap-img">
+                                <a href=""><img src="img/baojian9.jpg" alt=""/></a>
+                            </div>
+                            <div class="wrap-name"><a href="">这是个保健品是个保健品是个保健品是个保健品</a></div>
+                            <div class="wrap-price">¥168.00</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="wrap-R fl">
+                <div class="wrap-R-head clearfix">
+                    <ul class="fl">
+                        <li class="head-sel" data-page="0">
+                            <a href="">商品详情</a>
+                        </li>
+                        <li data-page="1">
+                            <a href="">商品评价(<span>99</span>)</a>
+                        </li>
+                        <li data-page="2">
+                            <a href="">在线问答</a>
+                        </li>
+                    </ul>
+                    <div class="fr tel">
+                        <a href="">手机购买有优惠</a>
+                    </div>
+                </div>
+                <div class="wrap-R-cont">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>品牌：</th>
+                            <td>我也不知道呀</td>
+                        </tr>
+                        <tr>
+                            <th>商品名称：</th>
+                            <td>维生素胡萝卜素</td>
+                            <th>商品产地：</th>
+                            <td>深圳</td>
+                        </tr>
+                        <tr>
+                            <th>批准文号：</th>
+                            <td>国药准字H20010714</td>
+                            <th>重量：</th>
+                            <td>0.6kg</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <div class="wrap-R-wrap">
+                        <img src="img/790x350.jpg">
+                        <img src="img/1409628044898102.jpg">
+                        <img src="img/20151104135914181.jpg">
+                        <img src="img/4-1.jpg">
+                        <img src="img/4.jpg">
+                        <img src="img/5-1.jpg">
+                        <img src="img/5.jpg">
+                        <img src="img/6-1.jpg">
+                        <img src="img/6.jpg">
+                        <img src="img/7-1.jpg">
+                        <img src="img/7.jpg">
+                        <img src="img/8-1.jpg"><br>
+                        <img src="img/8.jpg">
+                        <img src="img/8.jpg">
+                        <img src="img/8.jpg">
+                        <img src="img/8.jpg"><br>
+                        <img src="img/9-1.jpg">
+                        <img src="img/9.jpg">
+                        <img src="img/10-1.jpg">
+                        <img src="img/10.jpg">
+                        <img src="img/11-1.jpg">
+                        <img src="img/11.jpg">
+                        <img src="img/12-1.jpg">
+                        <img src="img/12.jpg">
+                        <img src="img/12-2.jpg">
+                    </div>
+                    <div style="width: 100%;height: 800px;background: yellow;display: none" class="wrap-R-wrap">
+                        评价内容后台获取
+                    </div>
+                    <div style="width: 100%;height: 800px;background: red;display: none" class="wrap-R-wrap">
+                        也需要后台
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

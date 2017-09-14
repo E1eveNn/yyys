@@ -1,0 +1,198 @@
+
+/*¹«ÓÃ*/
+*{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+    color: #4bd18a!important;
+}
+.comWidth{
+    width: 1200px;
+    margin: 0 auto;
+}
+.clearfix:after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden
+}
+header{
+    width: 100%;
+    height: 150px;
+    background:url("img/headbg.jpg")repeat-x left bottom;
+}
+.head img{
+   float: left;
+    margin-top: 20px;
+}
+.head h4{
+    display: inline-block;
+    text-align: center;
+    line-height: 150px;
+    width: 200px;
+    height: 150px;
+    font-size: 24px;
+    float: left;
+    color: #4bd18a;
+}
+.head span{
+    float: right;
+    color: #000;
+    margin-top: 100px;
+    font-weight: bold;
+}
+.head span a{
+    color: #4bd18a;
+}
+.container{
+    width: 100%;
+    height: 800px;
+    background: url("img/register.jpg")no-repeat;
+    position: relative;
+}
+.cont{
+    background-color: #fff;
+    height: 600px;
+    width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    margin-left: -400px;
+}
+.cont ul{
+    width: 800px;
+    height: 80px;
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+}
+.cont ul li {
+    float: left;
+    width: 399px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 22px;
+    color: #333;
+    margin: 20px 0;
+}
+.cont_register{
+    padding: 30px 0 0 60px;
+}
+.register-user{
+    width: 600px;
+    height: 55px;
+    padding-left: 50px;
+    background: url("img/login_user.png")no-repeat 10px center;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+}
+.cont_register form{
+    width: 650px;
+    height: 55px;
+    position: relative;
+    margin: 15px 0;
+}
+.cont_register form button{
+    position: absolute;
+    width: 100px;
+    height: 45px;
+    background-color: #39b2e5;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Microsoft YaHei", tahoma, arial;
+    top: 5px;
+    right: 5px;
+}
+.register-verify{
+    width: 600px;
+    height: 55px;
+    padding-left: 50px;
+    background: url("img/Email_verification_40.919540229885px_1191811_easyicon.net.png")no-repeat 10px center;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.register-password{
+    margin:15px 0;
+    width: 600px;
+    height: 55px;
+    padding-left: 50px;
+    background: url("img/Password_31.74297188755px_1180833_easyicon.net.png")no-repeat 10px center;
+    border: 1px solid #ccc;
+}
+.register-email{
+    margin:15px 0;
+    width: 600px;
+    height: 55px;
+    padding-left: 50px;
+    background: url("img/email_32px_1170221_easyicon.net.png")no-repeat 10px center;
+    border: 1px solid #ccc;
+}
+.cont ul li.li_hover{
+    color: #4bd18a;
+}
+.agree{
+    width:15px;
+    height:15px;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+.cont_register label a{
+    color: #4bd18a;
+    text-decoration: none;
+}
+.cont_register .btn{
+    margin-top: 20px;
+    width: 650px;
+    height: 50px;
+    background-color: #4bd18a;
+    color: #fff;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", tahoma, arial;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.footer{
+    padding-top: 20px;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+.footer ul{
+    overflow: auto;
+}
+.footer ul li{
+    float: left;
+}
+.footer ul li:first-child{
+    margin-left: 235px;
+}
+.footer ul li a{
+    color: #666;
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", tahoma, arial;
+    border-right: 1px solid #666;
+    height: 14px;
+    line-height: 14px;
+}
+.footer p{
+    margin-top: 20px;
+    color: #999;
+    text-align: center;
+}

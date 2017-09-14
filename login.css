@@ -1,0 +1,172 @@
+
+/*¹«ÓÃ*/
+*{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+    color: #4bd18a!important;
+}
+.comWidth{
+    width: 1200px;
+    margin: 0 auto;
+}
+.clearfix:after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden
+}
+header{
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.head img{
+    float: left;
+    margin-top: 20px;
+}
+.head h4{
+    display: inline-block;
+    text-align: center;
+    line-height: 150px;
+    width: 200px;
+    height: 150px;
+    font-size: 24px;
+    float: left;
+}
+.container{
+    width: 100%;
+    height: 600px;
+    background: url("img/login.jpg")no-repeat;
+    position: relative;
+}
+.login{
+    position: absolute;
+    left: 60%;
+    top: 100px;
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+}
+.login p{
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    text-align: right;
+    padding: 10px 20px 0 0;
+    color: #999;
+}
+.login p a{
+    color: #4bd18a;
+}
+.login h4{
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #4bd18a;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.login-btn {
+    padding:10px 20px 0 20px;
+}
+.login-btn span{
+    height: 18px;
+    width: 140px;
+    background: #fff6d2;
+    border: 1px solid #fdc800;
+    color: #eb3d00;
+    line-height: 18px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 5px;
+    display: none;
+}
+.login-btn a{
+    float: right;
+    color: #4bd18a;
+}
+.login-btn .btn{
+    margin-top: 30px;
+    width: 360px;
+    height: 35px;
+    border: none;
+    background-color: #4bd18a;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+.login-user{
+    width: 310px;
+    height:40px;
+    padding-left: 50px;
+    background: url("img/login_user.png")no-repeat 10px center;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+}
+.login-password{
+    margin:15px 0;
+    width: 310px;
+    height: 40px;
+    padding-left: 50px;
+    background: url("img/Password_31.74297188755px_1180833_easyicon.net.png")no-repeat 10px center;
+    border: 1px solid #ccc;
+}
+.login-others{
+    padding-left: 20px;
+    margin-top: 10px;
+}
+.login-others p{
+    text-align: left;
+    font-size: 14px;
+}
+.login-others ul li {
+    float: left;
+    padding: 0 30px 0 0;
+}
+.login-others ul li a{
+    color: #333;
+    font-size: 12px;
+}
+.footer{
+    padding-top: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+.footer ul{
+    overflow: auto;
+}
+.footer ul li{
+    float: left;
+}
+.footer ul li:first-child{
+    margin-left: 235px;
+}
+.footer ul li a{
+    color: #666;
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", tahoma, arial;
+    border-right: 1px solid #666;
+    height: 14px;
+    line-height: 14px;
+}
+.footer p{
+    margin-top: 20px;
+    color: #999;
+    text-align: center;
+}

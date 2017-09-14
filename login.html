@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录-营养优选</title>
+    <link rel="stylesheet" href="login.css" type="text/css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+   <script>
+      $(function(){
+          var Rempassword=$("#rempas").attr("checked");
+          $("#rempas").click(function () {
+              if(!Rempassword){
+                  $("#tips")[0].style.display="inline-block";
+                  Rempassword=true;
+              } else if(Rempassword){
+                  $("#tips")[0].style.display="none";
+                  Rempassword=false;
+              }
+          })
+      })
+   </script>
+</head>
+<body>
+    <header>
+        <div class="head comWidth clearfix">
+            <a href="main.html"><img src="img/logo-large.png"></a>
+            <h4>欢迎登录</h4>
+        </div>
+    </header>
+    <div class="container">
+        <div class="login">
+             <h4>账户登录</h4>
+               <p>不是会员？立即<a href="register.html" target="_self">免费注册</a></p>
+            <div class="login-btn">
+                <input type="text" placeholder="邮箱/手机号/用户名" class="login-user">
+                <input type="password" placeholder="请输入密码" class="login-password">
+                <input type="checkbox" id="rempas"><label for="rempas"> 记住密码</label>
+                <span id="tips">请勿在公共场合勾选此项</span>
+                <a href="#">忘记密码?</a><br>
+                <input type="submit" class="btn" value="登录">
+            </div>
+            <div class="login-others">
+                <p>使用其他账号登录:</p>
+                <ul>
+                    <li><a href="#">QQ</a></li>
+                    <li><a href="#">微信</a></li>
+                    <li><a href="#">支付宝</a></li>
+                    <li><a href="#">新浪微博</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer>
+            <div class="footer">
+                <div class="comWidth clearfix">
+                    <ul>
+                        <li><a href="">关于我们</a></li>
+                        <li><a href="">联系我们</a></li>
+                        <li><a href="">诚聘英才</a></li>
+                        <li><a href="">商家入驻</a></li>
+                        <li><a href="">合作伙伴</a></li>
+                        <li><a href="">友情键接</a></li>
+                        <li><a href="">法律声明</a></li>
+                        <li><a href="" style="border-right: none">English Site</a></li>
+                    </ul>
+                    <p>Copyright © 2011-2016 广州鼎卓信息技术有限公司 All Rights Reserved  粤ICP备16052074号</p>
+                </div>
+            </div>
+    </footer>
+</body>
+</html>

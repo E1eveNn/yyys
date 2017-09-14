@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户注册</title>
+    <link rel="stylesheet" href="register.css" type="text/css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $(".cont li").mouseover(function () {
+                var m=$(this);
+                m.addClass("li_hover").siblings().removeClass("li_hover");
+                var i= m.attr("data-value");
+                var divs=$(".cont_register div");
+                divs.hide();
+                divs.eq(i).show();
+            });
+            var agree=$(".agree").attr("checked");
+            var btn=$(".btn");
+            $(".agree").click(function () {
+                if(agree){
+                    btn.attr("disabled","true");
+                    agree=false;
+                }else if(!agree){
+                    btn.removeAttr("disabled");
+                    agree=true;
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<header>
+    <div class="head comWidth clearfix">
+        <a href="main.html"><img src="img/logo-large.png"></a>
+        <h4>欢迎注册</h4>
+        <span>已有账户?<a href="login.html" target="_self">请登录</a></span>
+    </div>
+</header>
+<div class="container">
+       <div class="cont">
+           <ul>
+               <li style="border-right: 2px solid #ccc;" class="li_hover" data-value="0">账户注册</li>
+               <li data-value="1">手机注册</li>
+           </ul>
+           <div class="cont_register">
+               <div>
+                   <input type="text" placeholder="请输入账户名" class="register-user">
+                   <input type="text" placeholder="请输入密码" class="register-password">
+                   <input type="text" placeholder="请再次输入密码" class="register-password">
+                   <input type="text" placeholder="请输入邮箱" class="register-email">
+                   <br>
+                   <input type="checkbox" id="agree1" checked class="agree"><label for="agree1">我已阅读并同意<a href=""><<营养优选用户注册协议营养优选用户注册协议>></a></label>
+                    <input type="submit" class="btn" value="立即注册">
+               </div>
+               <div style="display: none">
+                   <input type="text" placeholder="请输入手机号" class="register-user">
+                   <form><input type="text" placeholder="请输入验证码" class="register-verify"><button>获取验证码</button></form>
+                   <input type="text" placeholder="请输入密码" class="register-password">
+                   <input type="text" placeholder="请再次输入密码" class="register-password"><br>
+                   <input type="checkbox" id="agree2" checked class="agree"><label for="agree2">我已阅读并同意<a href=""><<营养优选用户注册协议营养优选用户注册协议>></a></label>
+                   <input type="submit" class="btn" value="立即注册">
+               </div>
+           </div>
+       </div>
+</div>
+<footer>
+    <div class="footer">
+        <div class="comWidth clearfix">
+            <ul>
+                <li><a href="">关于我们</a></li>
+                <li><a href="">联系我们</a></li>
+                <li><a href="">诚聘英才</a></li>
+                <li><a href="">商家入驻</a></li>
+                <li><a href="">合作伙伴</a></li>
+                <li><a href="">友情键接</a></li>
+                <li><a href="">法律声明</a></li>
+                <li><a href="" style="border-right: none">English Site</a></li>
+            </ul>
+            <p>Copyright © 2011-2016 广州鼎卓信息技术有限公司 All Rights Reserved  粤ICP备16052074号</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

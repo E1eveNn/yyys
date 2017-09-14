@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合保健-青少年</title>
+    <link rel="stylesheet" type="text/css" href="productCom.css">
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("body a").attr("target","_blank");
+            var alist = $(".content-L-head").find("li>a");
+            alist.each(function () {
+                var m = $(this);
+                m.click(function () {
+                    if (m.attr("class") != "clk") {
+                        m.parent("li").children("dl").slideDown(500);
+                        m.addClass("clk");
+                    } else {
+                        m.parent("li").children("dl").slideUp(500);
+                        m.removeClass("clk");
+                    }
+                })
+            });
+            var oNav=document.getElementById("navbar");
+            var oNavLi=oNav.getElementsByTagName("li");
+            var oDoc=document.getElementById("mydoc");
+            var oRZ=document.getElementById("ruzhu");
+            var oQR=document.getElementById("QRcode");
+            oNavLi[0].onmouseover=oDoc.onmouseover= function () {
+                oDoc.style.display="block";
+                oNavLi[0].style.backgroundColor="#fff";
+            };
+            oNavLi[0].onmouseout=oDoc.onmouseout=function () {
+                oDoc.style.display="none";
+                oNavLi[0].style.backgroundColor="#f2f2f2";
+            };
+            oNavLi[2].onmouseover=oRZ.onmouseover= function () {
+                oRZ.style.display="block";
+                oNavLi[2].style.backgroundColor="#fff";
+            };
+            oNavLi[2].onmouseout= oRZ.onmouseout=function () {
+                oRZ.style.display="none";
+                oNavLi[2].style.backgroundColor="#f2f2f2";
+            };
+            oNavLi[3].onmouseover=oQR.onmouseover= function () {
+                oQR.style.display="block";
+                oNavLi[3].style.backgroundColor="#fff";
+            };
+            oNavLi[3].onmouseout=oQR.onmouseout=function () {
+                oQR.style.display="none";
+                oNavLi[3].style.backgroundColor="#f2f2f2";
+            };
+            var moreInfo= $(".more-con");
+            moreInfo.hide();
+            $(".show-more").click(function () {
+                if(moreInfo.is(":visible")){
+                    moreInfo.hide();
+                    $(this).find("span").text("更多");
+                }else{
+                    moreInfo.show();
+                    $(this).find("span").text("收起");
+                }
+            });
+            $(".nav i").mouseover(function () {
+                $(".nav_list")[0].style.display="block";
+            });
+            $(".nav i").mouseout(function () {
+                $(".nav_list")[0].style.display="none";
+            });
+            $(".more a").click(function () {
+                var m=$(".brand ul");
+                if(m.hasClass("brandhide")){
+                    m.removeClass("brandhide");
+                    m.addClass("brandscroll");
+                    $(this).text("收起");
+                }else{
+                    m.removeClass("brandscroll");
+                    m.addClass("brandhide");
+                    $(this).text("更多");
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+<header>
+    <div class="comWidth clearfix">
+        <div class="head_left fl">
+            <i></i>
+            <span>欢迎来到营养优选网上商城</span>
+            <a href="login.html" style="color:#4bd18a;" target="_blank">登录</a>
+            <a href="register.html" target="_blank">注册</a>
+        </div>
+        <div class="head_right fr">
+            <ul id="navbar">
+                <li><a href="login.html" target="_blank">我的营养医生</a></li>
+                <li><a href="login.html" target="_blank">我的订单</a></li>
+                <li><a href="#">商家入驻</a></li>
+                <li class="mobile"><a href="#">手机APP</a></li>
+                <li class="wuliu"><a href="#">物流信息</a></li>
+                <li class="collect"><a href="#">收藏</a></li>
+            </ul>
+            <div class="dropdown" id="mydoc">
+                <span></span>
+                <p>您好，请登录</p>
+                <ul>
+                    <li><a href="#">健康数据</a></li>
+                    <li><a href="#">症状记录</a></li>
+                    <li><a href="#">咨询历史</a></li>
+                    <li><a href="#">自我诊断</a></li>
+                    <li><a href="#">我的关注</a></li>
+                    <li><a href="#">我的购买</a></li>
+                </ul>
+            </div>
+            <div class="dropdown" id="ruzhu">
+                <a href="#">个人入驻</a>
+            </div>
+            <div id="QRcode" class="dropdown">
+                <img src="img/QRcode.jpg">
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="cont_nav comWidth clearfix">
+        <div class="nav_img fl">
+            <a href="main.html"><img src="img/logo-large.png"></a>
+        </div>
+        <div class="nav_search fl">
+            <input type="text" placeholder="请输入商品名">
+            <span></span>
+            <ul>
+                <li><a href="" class="sel">复方板蓝根冲剂</a></li>
+                <li><a href="">夏桑菊颗粒</a></li>
+                <li><a href="">红景天</a></li>
+                <li><a href="">连花清瘟胶囊</a></li>
+                <li><a href="" class="sel">阿莫西林</a></li>
+                <li><a href="">999感冒灵</a></li>
+                <a href="" style="float: right;margin-top: 2px">更多>></a>
+            </ul>
+
+        </div>
+        <div class="nav_QRcode fl">
+            <span class="cart">购物车&nbsp;></span>
+        </div>
+    </div>
+    <div class="nav comWidth">
+        <i>全部商品分类
+            <div class="nav_list">
+                <ul>
+                    <li><a href="list01.html">综合保健</a><span></span>
+                    </li>
+                    <li><a href="list02.html">蛋白质&nbsp;</a><a href="list02.html">维生素</a><span></span>
+                    </li>
+                    <li><a href="list03.html">孕妈必备&nbsp;</a><a href="list03.html">宝宝用品&nbsp;</a><a href="list03.html">奶粉</a><span></span>
+                    </li>
+                    <li><a href="list04.html">儿童营养&nbsp;</a><a href="list04.html">益智</a><span></span>
+                    </li>
+                    <li><a href="list05.html">女性营养&nbsp;</a><a href="list05.html">养血&nbsp;</a><a href="list05.html">美白</a><span></span>
+                    </li>
+                    <li><a href="list06.html">营养塑身&nbsp;</a><a href="list06.html">纤体&nbsp;</a><a href="list06.html">增重</a><span></span>
+                    </li>
+                    <li><a href="list07.html">男性保健</a><span></span>
+                    </li>
+                    <li><a href="list08.html">慢病营养&nbsp;</a><a href="list08.html">调节三高&nbsp;</a><a href="list08.html">预防肿瘤</a><span></span>
+                    </li>
+                    <li><a href="list09.html">医用食品</a><span></span>
+                    </li>
+                    <li><a href="list10.html">保健器械</a><span></span>
+                    </li>
+                    <li><a href="list11.html">绿色食品&nbsp;</a><a href="list11.html">农产品&nbsp;</a><a href="list11.html">休闲食品</a><span></span>
+                    </li>
+                    <li><a href="list12.html">营养书籍&nbsp;</a><a href="list12.html">少儿书籍</a><span></span>
+                    </li>
+                    <li><a href="list13.html">海外直邮</a><span></span>
+                    </li>
+                </ul>
+            </div></i>
+        <ul class="nav_head">
+            <li><a href="main.html">首页</a></li>
+            <li><a href="health_onl.html">健康在线<img src="img/hot.gif"></a></li>
+            <li><a href="#">入驻机构</a></li>
+            <li><a href="#">免费提问<img src="img/nice.gif"></a></li>
+            <li><a href="#">社区服务</a></li>
+            <li><a href="#">营养论坛</a></li>
+            <li><a href="#">营养医生</a></li>
+        </ul>
+    </div>
+    <div class="hr"></div>
+</div>
+<div class="content comWidth clearfix">
+    <div class="content-L fl">
+        <div class="content-L-head">
+            <h4>综合保健</h4>
+            <ul>
+                <li><a>白领</a>
+                    <dl>
+                        <dd><a href="#">提升免疫力</a></dd>
+                        <dd><a href="#">抗疲劳</a></dd>
+                        <dd><a href="#">视力健康</a></dd>
+                        <dd><a href="#">清咽润喉</a></dd>
+                        <dd><a href="#">改善睡眠</a></dd>
+                    </dl>
+                </li>
+                <li><a>女士</a>
+                    <dl>
+                        <dd><a href="#">提升免疫力</a></dd>
+                        <dd><a href="#">抗疲劳</a></dd>
+                        <dd><a href="#">视力健康</a></dd>
+                        <dd><a href="#">清咽润喉</a></dd>
+                        <dd><a href="#">改善睡眠</a></dd>
+                    </dl>
+                </li>
+                <li><a>男士</a>
+                    <dl>
+                        <dd><a href="#">提升免疫力</a></dd>
+                        <dd><a href="#">抗疲劳</a></dd>
+                        <dd><a href="#">视力健康</a></dd>
+                        <dd><a href="#">清咽润喉</a></dd>
+                        <dd><a href="#">改善睡眠</a></dd>
+                    </dl>
+                </li>
+                <li><a>老年</a>
+                    <dl>
+                        <dd><a href="#">提升免疫力</a></dd>
+                        <dd><a href="#">抗疲劳</a></dd>
+                        <dd><a href="#">视力健康</a></dd>
+                        <dd><a href="#">清咽润喉</a></dd>
+                        <dd><a href="#">改善睡眠</a></dd>
+                    </dl>
+                </li>
+                <li><a>儿童、青少年</a>
+                    <dl>
+                        <dd><a href="#">提升免疫力</a></dd>
+                        <dd><a href="#">抗疲劳</a></dd>
+                        <dd><a href="#">视力健康</a></dd>
+                        <dd><a href="#">清咽润喉</a></dd>
+                        <dd><a href="#">改善睡眠</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="record">
+            <h4>浏览记录</h4>
+            <br>
+            <ul>
+            </ul>
+        </div>
+        <div class="hot">
+            <h4>大家都在看</h4>
+            <ul>
+                <li>
+                    <a href="#"><img src="img/baojian1.jpg"></a>
+                    <a href="#">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a>
+                    <span>¥94.5</span>&nbsp;<i>¥125</i>
+                </li>
+                <li>
+                    <a href="#"><img src="img/baojian1.jpg"></a>
+                    <a href="#">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a>
+                    <span>¥94.5</span>&nbsp;<i>¥125</i>
+                </li>
+                <li>
+                    <a href="#"><img src="img/baojian1.jpg"></a>
+                    <a href="#">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a>
+                    <span>¥94.5</span>&nbsp;<i>¥125</i>
+                </li>
+                <li>
+                    <a href="#"><img src="img/baojian1.jpg"></a>
+                    <a href="#">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a>
+                    <span>¥94.5</span>&nbsp;<i>¥125</i>
+                </li>
+                <li>
+                    <a href="#"><img src="img/baojian1.jpg"></a>
+                    <a href="#">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a>
+                    <span>¥94.5</span>&nbsp;<i>¥125</i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-R fr">
+        <div class="cont-R-head">
+            <dl class="clearfix">
+                <dt><a href="">综合保健</a>&gt;</dt>
+                <dd>
+                    <div class="nav-item">
+                        <div class="main"><a href="">青少年</a>&gt;</div>
+                        <div class="main-menu">
+                            <ul>
+                                <li><a href="">白领</a></li>
+                                <li><a href="">男士</a></li>
+                                <li><a href="">女士</a></li>
+                                <li><a href="">老年</a></li>
+                                <li><a href="">儿童、青少年</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="nav-item">
+                        <div class="main"><a href="">提升免疫力</a>&gt;</div>
+                        <div class="main-menu">
+                            <ul>
+                                <li><a href="">白领</a></li>
+                                <li><a href="">男士</a></li>
+                                <li><a href="">女士</a></li>
+                                <li><a href="">老年</a></li>
+                                <li><a href="">儿童、青少年</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="con-R-list">
+            <h4>
+                <span style="color:red;">青少年 </span>商品筛选&nbsp;&nbsp;共<i>1778</i>个商品
+            </h4>
+            <div class="choose">
+                <div class="brand clearfix">
+                    <div class="fl brand-Nm"><span>品牌:</span></div>
+                    <ul class="fl brandhide">
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">3</a></li>
+                    </ul>
+                    <div class="more fr"><a>更多</a></div>
+                </div>
+                <div class="price clearfix">
+                    <div class="fl brand-Nm"><span>价格:</span></div>
+                    <ul class="fl">
+                        <li><a href="">0-60</a></li>
+                        <li><a href="">60-120</a></li>
+                        <li><a href="">120-180</a></li>
+                        <li><a href="">180-240</a></li>
+                        <li><a href="">240-300</a></li>
+                        <li><a href="">300-500</a></li>
+                        <li><a href="">500-800</a></li>
+                        <li><a href="">800以上</a></li>
+                    </ul>
+                    <div class="fl price-box">
+                        <input type="text">
+                        <span>-</span>
+                        <input type="text">
+                        <a href="">确定</a>
+                    </div>
+                </div>
+                <div class="classify clearfix">
+                    <div class="fl brand-Nm"><span>国产/进口:</span></div>
+                    <ul class="fl">
+                        <li><a href="">国产</a></li>
+                        <li><a href="">进口</a></li>
+                    </ul>
+                </div>
+                <div class="classify clearfix">
+                    <div class="fl brand-Nm"><span>类型:</span></div>
+                    <ul class="fl">
+                        <li><a href="">中药</a></li>
+                        <li><a href="">西药</a></li>
+                    </ul>
+                </div>
+                <div class="show-more">
+                    <span class="sh-moretit">更多</span>
+                </div>
+                <div class="classify clearfix more-con">
+                    <div class="fl brand-Nm"><span>剂型:</span></div>
+                    <ul class="fl">
+                        <li><a href="">片剂</a></li>
+                        <li><a href="">丸剂</a></li>
+                        <li><a href="">胶囊</a></li>
+                        <li><a href="">颗粒</a></li>
+                        <li><a href="">贴剂</a></li>
+                        <li><a href="">凝胶剂</a></li>
+                        <li><a href="">冲剂</a></li>
+                        <li><a href="">喷雾剂</a></li>
+                        <li><a href="">洗剂</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cont-R-cont">
+            <div class="conR-select clearfix">
+                <ul class="fl">
+                    <li><a href="">综合</a></li>
+                    <li><a href="">销量</a></li>
+                    <li><a href="">最新</a></li>
+                    <li><a href="">价格</a></li>
+                </ul>
+                <div class="fr conR-chos">
+                    <i>1</i>
+                    <span>/8</span>
+                    <a class="disab">&lt;</a><a href="">&gt;</a>
+                </div>
+            </div>
+            <div class="list-area">
+                <ul>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bigimg"><img src="img/baojian3.jpg"></div>
+                        <div class="list-details">
+                            <i>¥60</i>
+                            <p><a href="">21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片
+                                21金维他 多维元素片 21金维他 多维元素片 21金维他 多维元素片</a></p>
+                            <span>营养医生自营</span>
+                            <div class="list-btn"><a href="" class="list-consult">咨询医生</a><a href="" class="list-add">加入购物车</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pages comWidth">
+    <ul>
+        <li><a href="" class="disab">&lt; 上一页</a></li>
+        <li><a href="" class="pageon">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">4</a></li>
+        <li><a href="">5</a></li>
+        <li><a href="">6</a></li>
+        <li><a href="">7</a></li>
+        <li><a href="">8</a></li>
+        <li><a href="">下一页 &gt;</a></li>
+        <li>共8页</li>
+        <li>跳转到
+            <input type="text">页
+            <button>确定</button>
+        </li>
+    </ul>
+</div>
+<footer>
+    <div class="foot_wrap">
+        <div class="comWidth clearfix foot_cont">
+            <ul>
+                <li>购物指南
+                    <dl>
+                        <dd><a href="">购物流程</a></dd>
+                        <dd><a href="">常见问题</a></dd>
+                        <dd><a href="">联系客服</a></dd>
+                    </dl>
+                </li>
+                <li>物流配送
+                    <dl>
+                        <dd><a href="">上门自提</a></dd>
+                        <dd><a href="">免运费条件</a></dd>
+                        <dd><a href="">配送范围</a></dd>
+                        <dd><a href="">收费标准</a></dd>
+                    </dl>
+                </li>
+                <li>支付方式
+                    <dl>
+                        <dd><a href="">货到付款</a></dd>
+                        <dd><a href="">网上支付</a></dd>
+                        <dd><a href="">分期付款</a></dd>
+                        <dd><a href="">快捷支付</a></dd>
+                        <dd><a href="">公司转账</a></dd>
+                    </dl>
+                </li>
+                <li>售后服务
+                    <dl>
+                        <dd><a href="">退换货政策</a></dd>
+                        <dd><a href="">退换货流程</a></dd>
+                        <dd><a href="">退款说明</a></dd>
+                        <dd><a href="">品牌售后</a></dd>
+                    </dl>
+                </li>
+                <li>商务合作
+                    <dl>
+                        <dd><a href="">供应商合作</a></dd>
+                        <dd><a href="">商家入驻</a></dd>
+                        <dd><a href="">广告服务</a></dd>
+                    </dl>
+                </li>
+                <li>营养医生客户端
+                    <dl>
+                        <a href=""><img src="img/QRcode.jpg"></a>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <div class="comWidth clearfix">
+                <ul>
+                    <li><a href="">关于我们</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">诚聘英才</a></li>
+                    <li><a href="">商家入驻</a></li>
+                    <li><a href="">合作伙伴</a></li>
+                    <li><a href="">友情键接</a></li>
+                    <li><a href="">法律声明</a></li>
+                    <li><a href="">English Site</a></li>
+                </ul>
+                <p>Copyright © 2011-2016 广州鼎卓信息技术有限公司 All Rights Reserved  粤ICP备16052074号-2</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

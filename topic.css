@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+header{
+    background-color: #11e49f;
+    width: 100%;
+    height: 3.5rem;
+    text-align: center;
+    line-height: 3.5rem;
+}
+header section{
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: "Microsoft YaHei";
+}
+nav{
+    background-color: #f1f5f8;
+    width: 100%;
+    height: 2rem;
+    overflow: hidden;
+}
+nav ul li{
+   display: inline-block;
+    padding:0.5rem 1.5rem;
+    height: 1rem;
+    line-height: 1rem;
+}
+nav a{
+    color: #333;
+    font-weight: bold;
+    font-size: 1rem;
+}
+nav a.navsel{
+    color:#11e49f;
+    border-bottom: 2px solid #11e49f;
+    padding-bottom:0.4rem;
+}
+.nav-img{
+    width: 100%;
+    height: 8rem;
+    position: relative;
+}
+.nav-img ul{
+    width: 100%;
+    height: 100%;
+}
+.nav-img>ul li{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+.nav-img ul li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.nav-img ul li a img{
+    width: 100%;
+    height: 100%;
+}
+.img-index{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left:-2.5rem;
+    width: 5rem;
+    height: 0.5rem;
+    background-color: #999;
+}
+.img-index ul{
+    width: 100%;
+    height:100%;
+}
+.img-index ul li{
+    margin:0 0.5rem 0 0;
+    width:0.5rem;
+    float: left;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+}
+section article{
+    width: 100%;
+    height: 8rem;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    border-bottom: 2px solid #eee;
+}
+section article .art-detail{
+    float: right;
+    width: 65%;
+}
+section article .art-img{
+    width: 30%;
+    float: left;
+    height: 100%;
+}
+.art-img a{
+    display: block;
+}
+.art-img a{
+    width: 100%;
+    height: 100%;
+}
+.art-img a img{
+    border-radius: 5px;
+    width: 100%;
+    height:100%;
+}
+section article .art-detail h4{
+    height: 2rem;
+    line-height: 2rem;
+}
+section article .art-detail p{
+    height:4rem;
+}
+section article .art-detail h4 a{
+    font: 1rem "Microsoft YaHei£¬ËÎÌå";
+    font-weight: bold;
+    color: #222;
+}
+section article .art-detail p a{
+    width: 100%;
+    line-height: 1em;
+    font: 0.8rem "Microsoft YaHei,Arial";
+    color: #333;
+}
